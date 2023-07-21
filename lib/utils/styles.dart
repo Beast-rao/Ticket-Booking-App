@@ -4,7 +4,8 @@ class Styles {
   static Color primaryColor = primary;
   static Color textColor = Color(0xFF3b3b3b);
   static Color bColor = Color(0xFFeeedf2);
-  static Color orangeColor = Color(0xFF526799);
+  static Color orangecardColor = Color(0xFFF37B67);
+  static Color bluecardColor = Color(0xFF526799);
   static TextStyle textStyle = TextStyle(
       fontSize: 16, color: textColor, fontWeight: FontWeight.w500);
   static TextStyle headLineStyle1 = TextStyle(
