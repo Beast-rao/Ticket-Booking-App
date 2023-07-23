@@ -14,14 +14,14 @@ class TicketView extends StatelessWidget {
     final size = AppLayout.getsize(context);
     return SizedBox(
       width: size.width*0.85,
-      height: 200,
+      height: AppLayout.getHeight(200),
       child: Container(
-        margin: EdgeInsets.only( right: 16),
+        margin: EdgeInsets.only( right: AppLayout.getHeight(16)),
         child: Column(
           children: [
             // It is the blue part of the ticket
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(AppLayout.getHeight(16)),
               decoration: BoxDecoration(
                   color: Color(0xFF526799),
                   borderRadius: BorderRadius.only(
@@ -43,7 +43,7 @@ class TicketView extends StatelessWidget {
                           //we are using it to overlap aeroplane icon over it
                           children: [
                             SizedBox(
-                              height: 24,
+                              height: AppLayout.getHeight(24),
                               child: LayoutBuilder(
                                 builder: (BuildContext context,
                                     BoxConstraints constraints) {
@@ -57,8 +57,8 @@ class TicketView extends StatelessWidget {
                                       (constraints.constrainWidth() / 6)
                                           .floor(),
                                       (index) => SizedBox(
-                                        width: 3,
-                                        height: 1,
+                                        width: AppLayout.getWidth(3),
+                                        height: AppLayout.getHeight(1),
                                         child: DecoratedBox(
                                           decoration: BoxDecoration(
                                               color: Colors.white),
@@ -121,8 +121,8 @@ class TicketView extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(
-                    height: 20,
-                    width: 10,
+                    height: AppLayout.getHeight(20),
+                    width: AppLayout.getWidth(10),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -133,7 +133,7 @@ class TicketView extends StatelessWidget {
                   ),
                   Expanded(
                     child: SizedBox(
-                      height: 24,
+                      height: AppLayout.getHeight(24),
                       child: LayoutBuilder(
                         builder:
                             (BuildContext context, BoxConstraints constraints) {
@@ -145,8 +145,8 @@ class TicketView extends StatelessWidget {
                               // to generate the dot items
                               (constraints.constrainWidth() / 10).floor(),
                               (index) => SizedBox(
-                                width: 3,
-                                height: 1,
+                                width: AppLayout.getWidth(3),
+                                height: AppLayout.getHeight(1),
                                 child: DecoratedBox(
                                   decoration:
                                       BoxDecoration(color: Colors.white),
@@ -159,8 +159,8 @@ class TicketView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                    width: 10,
+                    height: AppLayout.getHeight(20),
+                    width: AppLayout.getWidth(10),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                           color: Colors.white,

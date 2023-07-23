@@ -1,5 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketbookingapp/Screens/search.dart';
 import 'home.dart';
 
 class BottomBar extends StatefulWidget {
@@ -10,10 +11,10 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedindex=0;
+  int _selectedindex=1;
   final List<Widget> _widgets=<Widget>[
     HomeScreen(),
-    Text("Search"),
+    SearchScreen(),
     Text("Ticket"),
     Text("Profile"),
 
