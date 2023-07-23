@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:ticketbookingapp/utils/styles.dart';
+import 'package:ticketbookingapp/widgets/amazed.dart';
 import 'package:ticketbookingapp/widgets/double_text.dart';
 import 'package:ticketbookingapp/widgets/flight%20.dart';
 import '../utils/app_layouts.dart';
@@ -26,46 +27,7 @@ class SearchScreen extends StatelessWidget {
                 fontSize: AppLayout.getHeight(35), fontWeight: FontWeight.bold),
           ),
           Gap(AppLayout.getHeight(20)),
-          FittedBox(
-            child: Container(
-              padding: EdgeInsets.all(3.5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: size.width * 0.44,
-                    padding: EdgeInsets.symmetric(vertical: 7),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadius.horizontal(left: Radius.circular(50))),
-                    child: Center(
-                        child: Text(
-                      "Airlines Tickets",
-                      style: Styles.textStyle,
-                    )),
-                  ),
-                  Container(
-                    width: size.width * 0.44,
-                    padding: EdgeInsets.symmetric(vertical: 7),
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.horizontal(
-                            right: Radius.circular(50))),
-                    child: Center(
-                        child: Text(
-                      "Hotels",
-                      style: Styles.textStyle,
-                    )),
-                  )
-                ],
-              ),
-              decoration: BoxDecoration(
-                color: Color(0xFFF4F6FD),
-                borderRadius: BorderRadius.circular(50),
-              ),
-            ),
-          ),
+          Buttons(first: "Airlines Tickets", second: "Hotels"),
           Gap(AppLayout.getHeight(25)),
           Flight(icon: Icons.flight_takeoff_rounded, name: "Departure"),
           Gap(AppLayout.getHeight(20)),

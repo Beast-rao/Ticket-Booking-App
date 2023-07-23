@@ -38,6 +38,8 @@ dependencies:
   fluentui_system_icons: ^1.1.206
   gap: ^3.0.1
   get: ^4.6.5
+  barcode: ^2.2.4
+  barcode_widget: ^2.0.4
 
 
 dev_dependencies:
