@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:gap/gap.dart';
 import 'package:ticketbookingapp/Screens/hotels.dart';
 import 'package:ticketbookingapp/Screens/ticketview.dart';
+import 'package:ticketbookingapp/utils/app_layouts.dart';
 
 import '../utils/app_list_models.dart';
 import '../utils/styles.dart';
@@ -48,24 +49,37 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Gap(25),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(10), vertical:AppLayout.getHeight(10)),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color(0xFFF4F6FD)
                         // color: Colors.white
                         ),
-                    child: Row(
-                      children: [
-                        Icon(
+                    child:TextFormField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           FluentIcons.search_28_regular,
                           color: Color(0xFFBFC205),
                         ),
-                        Text(
-                          "Search",
-                          style: Styles.headLineStyle4,
-                        )
-                      ],
-                    ),
+                        hintText: "Search",
+                        border: InputBorder.none,
+
+                      ),
+
+                    )
+                    ,
+                    // Row(
+                    //   children: [
+                    //     Icon(
+                    //       FluentIcons.search_28_regular,
+                    //       color: Color(0xFFBFC205),
+                    //     ),
+                    //     Text(
+                    //       "Search",
+                    //       style: Styles.headLineStyle4,
+                    //     )
+                    //   ],
+                    // ),
                   ),
                   Gap(30),
                   Row(
@@ -93,7 +107,7 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(left: 20),
               child: Row(
-                children:ticketList.map((e) => TicketView(ticket: e)).toList()
+                children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,)).toList()
               ),
             ),
             Gap(15),

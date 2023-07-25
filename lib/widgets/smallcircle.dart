@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SmallCircle extends StatelessWidget {
-  final bool? isColor;
+  final Color isColor;
 
-  const SmallCircle({super.key, this.isColor});
+  const SmallCircle({super.key, required this.isColor});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class SmallCircle extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           border: Border.all(
-              color: isColor == null ? Colors.white : Color(0xFF8ACCF7),
+              color: isColor  ,
               style: BorderStyle.solid,
               width: 2.5)),
     );

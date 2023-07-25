@@ -12,8 +12,9 @@ import '../widgets/reusecolumn.dart';
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
   final bool? isColor;
+  final Color  color;
 
-  const TicketView({super.key, required this.ticket, this.isColor});
+  const TicketView({super.key, required this.ticket, this.isColor,required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class TicketView extends StatelessWidget {
                             : Styles.headLineStyle3,
                       ),
                       Spacer(), // to give the equal space between widgets
-                      SmallCircle(isColor: true),
+                      SmallCircle(isColor:color),
                       Expanded(
                         child: Stack(
                           //we are using it to overlap aeroplane icon over it
@@ -94,7 +95,7 @@ class TicketView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SmallCircle(isColor: true,),
+                      SmallCircle(isColor: color,),
                       Spacer(),
                       Text(
                         ticket['to']['code'],

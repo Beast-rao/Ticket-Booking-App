@@ -13,7 +13,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedindex=3;
+  int _selectedindex=0;
   final List<Widget> _widgets=<Widget>[
     HomeScreen(),
     SearchScreen(),
