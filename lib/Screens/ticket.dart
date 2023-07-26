@@ -34,16 +34,16 @@ class TicketScreen extends StatelessWidget {
                     first: "Upcoming", second: "Previous"),
                 Gap(AppLayout.getHeight(20)),
                 Container(
-                  padding: EdgeInsets.only(left: AppLayout.getHeight(15)),
+                  padding: EdgeInsets.only(left: AppLayout.getHeight(16)),
                   child: TicketView(
                     ticket: ticketList[0],
                     isColor: true,
                     color: Color(0xFF8ACCF7),
                   ),
                 ),
-                SizedBox(
-                  height: 1,
-                ),
+                // SizedBox(
+                //   height: 1,
+                // ),
                 Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: AppLayout.getHeight(15),

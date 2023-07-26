@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:gap/gap.dart';
 import 'package:ticketbookingapp/Screens/hotels.dart';
+import 'package:ticketbookingapp/Screens/hotels_viewall.dart';
 import 'package:ticketbookingapp/Screens/ticketview.dart';
+import 'package:ticketbookingapp/Screens/upcoming_flights.dart';
 import 'package:ticketbookingapp/utils/app_layouts.dart';
 
 import '../utils/app_list_models.dart';
@@ -10,6 +12,7 @@ import '../utils/styles.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +93,9 @@ class HomeScreen extends StatelessWidget {
                         style: Styles.headLineStyle2,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>UpcomingFlights()));
+                        },
                         child: Text(
                           "View all",
                           style: Styles.textStyle
@@ -103,13 +108,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Gap(15),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,)).toList()
-              ),
-            ),
+            TicketsWidget(dir: Axis.horizontal),
             Gap(15),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -121,7 +120,10 @@ class HomeScreen extends StatelessWidget {
                     style: Styles.headLineStyle2,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HotelViewAll()));
+
+                    },
                     child: Text(
                       "View all",
                       style:
@@ -133,15 +135,50 @@ class HomeScreen extends StatelessWidget {
             ),
             Gap(15),
             //hotels view cards are here
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: hotelList.map((e) => Hotel(hotel: e)).toList(),
-              ),
-            ),
+            HotelsWidget(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class HotelsWidget extends StatelessWidget {
+  bool? isHotelScreen;
+   HotelsWidget({
+    super.key,
+     this.isHotelScreen
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return isHotelScreen==null? SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.only(left: 20),
+      child: Row(
+        children: hotelList.map((e) => Hotel(hotel: e)).toList(),
+      ),
+    ): GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
+    children: hotelList.map((e) => Hotel(hotel: e,isHotelView: true),).toList(),scrollDirection: Axis.vertical ,);
+  }
+}
+
+class TicketsWidget extends StatelessWidget {
+  final Axis dir;
+  final bool? isCheck;
+
+  const TicketsWidget({super.key, required this.dir,this.isCheck});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: dir,
+      padding:isCheck==null? EdgeInsets.only(left:AppLayout.getHeight(20),):EdgeInsets.symmetric(horizontal : AppLayout.getHeight(20)),
+      child: isCheck==null? Row(
+        children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,)).toList()
+      ):Column(
+          children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,istickets: true,)).toList()
+
       ),
     );
   }
