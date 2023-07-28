@@ -8,7 +8,6 @@ import 'Screens/bottom_bar.dart';
 import 'Screens/home.dart';
 import 'Screens/login.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -20,24 +19,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-
-        debugShowCheckedModeBanner: false,
-        title: 'Ticket Booking App',
-        home: BottomBar(),
-    initialRoute: MyRoutes.loginroute,
-    routes: {
-      // "/":(context)=> HomeScreen(),
-      MyRoutes.bottombtnroute:(context)=>BottomBar(),
-      MyRoutes.homeroute:(context)=>HomeScreen(),
-      MyRoutes.loginroute:(context)=>LoginPage(),
-      MyRoutes.ticketroute:(context)=>TicketScreen(),
-      MyRoutes.searchroute:(context)=>SearchScreen(),
-      MyRoutes.profileroute:(context)=>ProfileScreen(),
-
-
-    },
-
+      debugShowCheckedModeBanner: false,
+      title: 'Ticket Booking App',
+      home: BottomBar(),
+      initialRoute: MyRoutes.loginroute,
+      routes: {
+        // "/":(context)=> HomeScreen(),
+        MyRoutes.bottombtnroute: (context) => BottomBar(),
+        MyRoutes.homeroute: (context) => HomeScreen(),
+        MyRoutes.loginroute: (context) => LoginPage(),
+        MyRoutes.ticketroute: (context) => TicketScreen(),
+        MyRoutes.searchroute: (context) => SearchScreen(),
+        MyRoutes.profileroute: (context) => ProfileScreen(),
+      },
     );
-
   }
 }

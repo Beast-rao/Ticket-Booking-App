@@ -74,7 +74,8 @@ class _HotelViewAllState extends State<HotelViewAll> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
+                margin:
+                    EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
                 child: TextFormField(
                   onChanged: _runSearch,
                   decoration: InputDecoration(

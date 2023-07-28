@@ -27,7 +27,8 @@ class SearchScreen extends StatelessWidget {
             Text(
               "What are\n you looking for?",
               style: Styles.headLineStyle1.copyWith(
-                  fontSize: AppLayout.getHeight(35), fontWeight: FontWeight.bold),
+                  fontSize: AppLayout.getHeight(35),
+                  fontWeight: FontWeight.bold),
             ),
             Gap(AppLayout.getHeight(20)),
             Buttons(first: "Airlines Tickets", second: "Hotels"),
@@ -50,9 +51,12 @@ class SearchScreen extends StatelessWidget {
               )),
             ),
             Gap(AppLayout.getHeight(40)),
-            DoubleText(bn: "Upcoming Flights", sn: "View all",press:(){
-              Get.to(UpcomingFlights());
-            }),
+            DoubleText(
+                bn: "Upcoming Flights",
+                sn: "View all",
+                press: () {
+                  Get.to(UpcomingFlights());
+                }),
             Gap(AppLayout.getHeight(10)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

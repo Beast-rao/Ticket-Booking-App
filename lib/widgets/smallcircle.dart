@@ -11,10 +11,8 @@ class SmallCircle extends StatelessWidget {
       padding: EdgeInsets.all(3),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          border: Border.all(
-              color: isColor  ,
-              style: BorderStyle.solid,
-              width: 2.5)),
+          border:
+              Border.all(color: isColor, style: BorderStyle.solid, width: 2.5)),
     );
   }
 }

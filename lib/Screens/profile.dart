@@ -137,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(
-                        horizontal:AppLayout.getHeight(20),
+                        horizontal: AppLayout.getHeight(20),
                         vertical: AppLayout.getHeight(15)),
                     child: Row(
                       children: [
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               "You\'e got a new Award",
                               style: Styles.headLineStyle1
-                                  .copyWith(color: Colors.white,fontSize: 20),
+                                  .copyWith(color: Colors.white, fontSize: 20),
                             ),
                             Gap(
                               AppLayout.getHeight(3),
@@ -165,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               "You have 100 flights in a year!",
                               style: Styles.headLineStyle3
-                                  .copyWith(color: Colors.white,fontSize: 14),
+                                  .copyWith(color: Colors.white, fontSize: 14),
                             )
                           ],
                         )
@@ -196,7 +196,8 @@ class ProfileScreen extends StatelessWidget {
                 AppLayout.getHeight(20),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(15)),
+                padding:
+                    EdgeInsets.symmetric(horizontal: AppLayout.getWidth(15)),
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -276,8 +277,17 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Gap(AppLayout.getHeight(20),),
-              InkWell(onTap: (){},child: Center(child: Text("How to get more miles",style: Styles.textStyle.copyWith(color: Styles.primaryColor),)))
+              Gap(
+                AppLayout.getHeight(20),
+              ),
+              InkWell(
+                  onTap: () {},
+                  child: Center(
+                      child: Text(
+                    "How to get more miles",
+                    style:
+                        Styles.textStyle.copyWith(color: Styles.primaryColor),
+                  )))
             ],
           )),
     );

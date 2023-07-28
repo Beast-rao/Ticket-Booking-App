@@ -8,7 +8,6 @@ import 'package:ticketbookingapp/utils/app_list_models.dart';
 import '../utils/styles.dart';
 
 class UpcomingFlights extends StatefulWidget {
-
   @override
   State<UpcomingFlights> createState() => _UpcomingFlightsState();
 }
@@ -16,7 +15,8 @@ class UpcomingFlights extends StatefulWidget {
 class _UpcomingFlightsState extends State<UpcomingFlights> {
   List<Map<String, dynamic>> _search = [];
 
-  List<Map<String, dynamic>> _ticketList = []; // New variable to store original data
+  List<Map<String, dynamic>> _ticketList =
+      []; // New variable to store original data
 
   @override
   void initState() {
@@ -28,24 +28,24 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
   void _runSearch(String enterKeyword) {
     List<Map<String, dynamic>> results = [];
 
-
     if (enterKeyword.isEmpty) {
       results = _ticketList;
     } else {
       results = _ticketList
           .where((ticket) =>
-      ticket['from']['name']
-          .toLowerCase()
-          .contains(enterKeyword.toLowerCase()) || ticket['from']['code']
-          .toLowerCase()
-          .contains(enterKeyword.toLowerCase()) || ticket['to']['code']
-          .toLowerCase()
-          .contains(enterKeyword.toLowerCase()) || ticket['from']['name']
-          .toLowerCase()
-          .contains(enterKeyword.toLowerCase()) ||
-          ticket ['number']
-              .toString()
-              .contains(enterKeyword.toString()))
+              ticket['from']['name']
+                  .toLowerCase()
+                  .contains(enterKeyword.toLowerCase()) ||
+              ticket['from']['code']
+                  .toLowerCase()
+                  .contains(enterKeyword.toLowerCase()) ||
+              ticket['to']['code']
+                  .toLowerCase()
+                  .contains(enterKeyword.toLowerCase()) ||
+              ticket['from']['name']
+                  .toLowerCase()
+                  .contains(enterKeyword.toLowerCase()) ||
+              ticket['number'].toString().contains(enterKeyword.toString()))
           .toList();
     }
 
@@ -53,6 +53,7 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
       _search = results;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,15 +66,20 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
             "Upcoming Flights",
             style: Styles.headLineStyle2,
           ),
-          leading: IconButton(onPressed: (){
-            Get.back();
-          }, icon:Icon( Icons.arrow_back_ios_new_rounded,)),
+          leading: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_new_rounded,
+              )),
         ),
         body: Center(
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
+                margin:
+                    EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
                 child: TextFormField(
                   onChanged: _runSearch,
                   decoration: InputDecoration(
@@ -86,7 +92,6 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
                   ),
                 ),
               ),
-
               Expanded(
                 child: TicketsWidget(
                   dir: Axis.vertical,

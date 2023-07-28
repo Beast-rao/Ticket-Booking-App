@@ -13,19 +13,17 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedindex=0;
-  final List<Widget> _widgets=<Widget>[
+  int _selectedindex = 0;
+  final List<Widget> _widgets = <Widget>[
     HomeScreen(),
     SearchScreen(),
     TicketScreen(),
     ProfileScreen(),
-
-
   ];
-  void onItemTapped(int index){
-    setState(() {
 
-      _selectedindex=index;
+  void onItemTapped(int index) {
+    setState(() {
+      _selectedindex = index;
     });
   }
 
