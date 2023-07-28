@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:ticketbookingapp/Screens/upcoming_flights.dart';
 import 'package:ticketbookingapp/utils/styles.dart';
 import 'package:ticketbookingapp/widgets/amazed.dart';
 import 'package:ticketbookingapp/widgets/double_text.dart';
@@ -48,7 +50,9 @@ class SearchScreen extends StatelessWidget {
               )),
             ),
             Gap(AppLayout.getHeight(40)),
-            DoubleText(bn: "Upcoming Flights", sn: "View all"),
+            DoubleText(bn: "Upcoming Flights", sn: "View all",press:(){
+              Get.to(UpcomingFlights());
+            }),
             Gap(AppLayout.getHeight(10)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -39,6 +39,7 @@ class TicketScreen extends StatelessWidget {
                     ticket: ticketList[0],
                     isColor: true,
                     color: Color(0xFF8ACCF7),
+
                   ),
                 ),
                 // SizedBox(

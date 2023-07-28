@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../utils/styles.dart';
+
 class DoubleText extends StatelessWidget {
   final String bn;
   final String sn;
+  final Function press; // Use Function type for the callback
 
-  const DoubleText({super.key, required this.bn, required this.sn});
+  const DoubleText(
+      {super.key, required this.bn, required this.sn, required this.press});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,13 @@ class DoubleText extends StatelessWidget {
           style: Styles.headLineStyle2,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            press(); // Call the press function using parentheses
+          },
+          splashColor: Colors.transparent,
           child: Text(
             sn,
-            style: Styles.textStyle
-                .copyWith(color: Styles.primaryColor),
+            style: Styles.textStyle.copyWith(color: Styles.primaryColor),
           ),
         )
       ],

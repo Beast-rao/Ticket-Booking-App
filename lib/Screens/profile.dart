@@ -143,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.white,
-                          maxRadius: 24,
+                          maxRadius: 20,
                           child: Icon(
                             FluentIcons.lightbulb_filament_16_filled,
                             color: Styles.primaryColor,
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               "You\'e got a new Award",
                               style: Styles.headLineStyle1
-                                  .copyWith(color: Colors.white),
+                                  .copyWith(color: Colors.white,fontSize: 20),
                             ),
                             Gap(
                               AppLayout.getHeight(3),
@@ -165,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               "You have 100 flights in a year!",
                               style: Styles.headLineStyle3
-                                  .copyWith(color: Colors.white),
+                                  .copyWith(color: Colors.white,fontSize: 14),
                             )
                           ],
                         )

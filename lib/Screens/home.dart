@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:ticketbookingapp/Screens/hotels.dart';
 import 'package:ticketbookingapp/Screens/hotels_viewall.dart';
 import 'package:ticketbookingapp/Screens/ticketview.dart';
@@ -10,9 +11,69 @@ import 'package:ticketbookingapp/utils/app_layouts.dart';
 import '../utils/app_list_models.dart';
 import '../utils/styles.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  List<Map<String, dynamic>> _search = [];
+  List<Map<String, dynamic>> _searchotel = [];
+  List<Map<String, dynamic>> _hotelLiist = [];
+  List<Map<String, dynamic>> _ticketList = []; // New variable to store original data
+
+  @override
+  void initState() {
+    _ticketList = ticketList; // Initialize _ticketList with the original data
+    _search = _ticketList; // Initialize _search with the original data
+    _hotelLiist=hotelList;// Initialize _hotelList with the original data
+    _searchotel=_hotelLiist;// Initialize _searchotel with the original data
+    super.initState();
+  }
+
+  void _runSearch(String enterKeyword) {
+    List<Map<String, dynamic>> results = [];
+    List<Map<String, dynamic>> hresults = [];
+
+
+    if (enterKeyword.isEmpty) {
+      results = _ticketList;
+      hresults=_hotelLiist;
+    } else {
+      results = _ticketList
+          .where((ticket) =>
+      ticket['from']['name']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) || ticket['from']['code']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) || ticket['to']['code']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) || ticket['from']['name']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) ||
+          ticket ['number']
+              .toString()
+              .contains(enterKeyword.toString()))
+          .toList();
+      hresults=_hotelLiist
+      .where((hotel) =>
+      hotel['place']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) || hotel['destination']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase())
+      ||
+          hotel ['price']
+              .toString()
+              .contains(enterKeyword.toString()))
+          .toList();
+    }
+
+    setState(() {
+      _search = results;
+      _searchotel=hresults;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +120,7 @@ class HomeScreen extends StatelessWidget {
                         // color: Colors.white
                         ),
                     child:TextFormField(
+                      onChanged: _runSearch, // Call _runSearch when text changes
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           FluentIcons.search_28_regular,
@@ -94,8 +156,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>UpcomingFlights()));
+                          Get.to(UpcomingFlights());
                         },
+                        splashColor: Colors.transparent,
                         child: Text(
                           "View all",
                           style: Styles.textStyle
@@ -108,7 +171,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Gap(15),
-            TicketsWidget(dir: Axis.horizontal),
+            TicketsWidget(dir: Axis.horizontal,ticket: _search),// Pass _search list to TicketsWidget
             Gap(15),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -121,9 +184,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HotelViewAll()));
+                      Get.to(HotelViewAll());
 
                     },
+                    splashColor: Colors.transparent,
                     child: Text(
                       "View all",
                       style:
@@ -135,7 +199,7 @@ class HomeScreen extends StatelessWidget {
             ),
             Gap(15),
             //hotels view cards are here
-            HotelsWidget(),
+            HotelsWidget(hotel: _searchotel),
           ],
         ),
       ),
@@ -145,9 +209,10 @@ class HomeScreen extends StatelessWidget {
 
 class HotelsWidget extends StatelessWidget {
   bool? isHotelScreen;
+  final List<Map<String, dynamic>> hotel; // Add a new parameter for the filtered list
    HotelsWidget({
     super.key,
-     this.isHotelScreen
+     this.isHotelScreen, required this.hotel
   });
 
   @override
@@ -156,18 +221,20 @@ class HotelsWidget extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       padding: EdgeInsets.only(left: 20),
       child: Row(
-        children: hotelList.map((e) => Hotel(hotel: e)).toList(),
+        children: hotel.map((e) => Hotel(hotel: e)).toList(),
       ),
     ): GridView(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
-    children: hotelList.map((e) => Hotel(hotel: e,isHotelView: true),).toList(),scrollDirection: Axis.vertical ,);
+    children: hotel.map((e) => Hotel(hotel: e,isHotelView: true),).toList(),scrollDirection: Axis.vertical ,);
   }
 }
 
 class TicketsWidget extends StatelessWidget {
   final Axis dir;
+  final List<Map<String, dynamic>> ticket; // Add a new parameter for the filtered list
   final bool? isCheck;
 
-  const TicketsWidget({super.key, required this.dir,this.isCheck});
+  TicketsWidget({Key? key, required this.dir, required this.ticket,this.isCheck})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -175,9 +242,9 @@ class TicketsWidget extends StatelessWidget {
       scrollDirection: dir,
       padding:isCheck==null? EdgeInsets.only(left:AppLayout.getHeight(20),):EdgeInsets.symmetric(horizontal : AppLayout.getHeight(20)),
       child: isCheck==null? Row(
-        children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,)).toList()
+        children:ticket.map((e) => TicketView(ticket: e,color: Colors.white,)).toList()
       ):Column(
-          children:ticketList.map((e) => TicketView(ticket: e,color: Colors.white,istickets: true,)).toList()
+          children:ticket.map((e) => TicketView(ticket: e,color: Colors.white,istickets: true,)).toList()
 
       ),
     );
