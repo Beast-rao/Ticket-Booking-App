@@ -16,7 +16,7 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
   List<Map<String, dynamic>> _search = [];
 
   List<Map<String, dynamic>> _ticketList =
-      []; // New variable to store original data
+  []; // New variable to store original data
 
   @override
   void initState() {
@@ -33,19 +33,19 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
     } else {
       results = _ticketList
           .where((ticket) =>
-              ticket['from']['name']
-                  .toLowerCase()
-                  .contains(enterKeyword.toLowerCase()) ||
-              ticket['from']['code']
-                  .toLowerCase()
-                  .contains(enterKeyword.toLowerCase()) ||
-              ticket['to']['code']
-                  .toLowerCase()
-                  .contains(enterKeyword.toLowerCase()) ||
-              ticket['from']['name']
-                  .toLowerCase()
-                  .contains(enterKeyword.toLowerCase()) ||
-              ticket['number'].toString().contains(enterKeyword.toString()))
+      ticket['from']['name']
+          .toLowerCase()
+          .contains(enterKeyword.toLowerCase()) ||
+          ticket['from']['code']
+              .toLowerCase()
+              .contains(enterKeyword.toLowerCase()) ||
+          ticket['to']['code']
+              .toLowerCase()
+              .contains(enterKeyword.toLowerCase()) ||
+          ticket['from']['name']
+              .toLowerCase()
+              .contains(enterKeyword.toLowerCase()) ||
+          ticket['number'].toString().contains(enterKeyword.toString()))
           .toList();
     }
 
@@ -79,7 +79,7 @@ class _UpcomingFlightsState extends State<UpcomingFlights> {
             children: [
               Container(
                 margin:
-                    EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
+                EdgeInsets.symmetric(horizontal: AppLayout.getHeight(16)),
                 child: TextFormField(
                   onChanged: _runSearch,
                   decoration: InputDecoration(

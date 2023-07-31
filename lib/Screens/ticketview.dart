@@ -9,7 +9,7 @@ import '../widgets/reusecolumn.dart';
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
   final bool? isColor;
-  bool? istickets;
+  final bool? istickets;
   final Color color;
 
   TicketView(
@@ -25,9 +25,9 @@ class TicketView extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: size.width * 0.85,
+          width: istickets == null ? size.width * 0.88 : size.width * 0.99,
           height: istickets == null
-              ? AppLayout.getHeight(184)
+              ? AppLayout.getHeight(183)
               : AppLayout.getHeight(222),
           child: istickets == null
               ? Container(
@@ -233,8 +233,7 @@ class TicketView extends StatelessWidget {
                     ],
                   ),
                 )
-              : Expanded(
-                  child: Container(
+              : Container(
                     margin: EdgeInsets.all(AppLayout.getHeight(10)),
                     padding: EdgeInsets.all(10),
                     child: Column(
@@ -370,8 +369,8 @@ class TicketView extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20))),
+                                          topRight: Radius.circular(AppLayout.getHeight(20)),
+                                          bottomRight: Radius.circular(AppLayout.getHeight(20)))),
                                 ),
                               ),
                               Expanded(
@@ -398,51 +397,53 @@ class TicketView extends StatelessWidget {
                           ),
                         ),
                         // bottom part of the card
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: isColor == null
-                                  ? Styles.orangecardColor
-                                  : Colors.white,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: isColor == null
-                                    ? Radius.circular(20)
-                                    : Radius.circular(0),
-                                bottomRight: isColor == null
-                                    ? Radius.circular(20)
-                                    : Radius.circular(0),
-                              )),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ReuseColumn(
-                                      name: ticket['date'],
-                                      who: "Date",
-                                      alignment: CrossAxisAlignment.start,
-                                      isColor: isColor),
-                                  ReuseColumn(
-                                      name: ticket['departure_time'],
-                                      who: "Departure Time",
-                                      alignment: CrossAxisAlignment.end,
-                                      isColor: isColor),
-                                  ReuseColumn(
-                                      name: ticket["number"].toString(),
-                                      who: "Number",
-                                      alignment: CrossAxisAlignment.end,
-                                      isColor: isColor),
-                                ],
-                              )
-                            ],
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(AppLayout.getHeight(16)),
+                            decoration: BoxDecoration(
+                                color: isColor == null
+                                    ? Styles.orangecardColor
+                                    : Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: isColor == null
+                                      ? Radius.circular(AppLayout.getHeight(20))
+                                      : Radius.circular(AppLayout.getHeight(0)),
+                                  bottomRight: isColor == null
+                                      ? Radius.circular(AppLayout.getHeight(20))
+                                      : Radius.circular(AppLayout.getHeight(0)),
+                                )),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ReuseColumn(
+                                        name: ticket['date'],
+                                        who: "Date",
+                                        alignment: CrossAxisAlignment.start,
+                                        isColor: isColor),
+                                    ReuseColumn(
+                                        name: ticket['departure_time'],
+                                        who: "Departure Time",
+                                        alignment: CrossAxisAlignment.end,
+                                        isColor: isColor),
+                                    ReuseColumn(
+                                        name: ticket["number"].toString(),
+                                        who: "Number",
+                                        alignment: CrossAxisAlignment.end,
+                                        isColor: isColor),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-        )
+
       ],
     );
   }
