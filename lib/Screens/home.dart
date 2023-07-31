@@ -10,6 +10,7 @@ import 'package:ticketbookingapp/utils/app_layouts.dart';
 
 import '../utils/app_list_models.dart';
 import '../utils/styles.dart';
+import '../widgets/double_text.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -146,26 +147,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     // ),
                   ),
                   Gap(30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Upcoming Flights",
-                        style: Styles.headLineStyle2,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(UpcomingFlights());
-                        },
-                        splashColor: Colors.transparent,
-                        child: Text(
-                          "View all",
-                          style: Styles.textStyle
-                              .copyWith(color: Styles.primaryColor),
-                        ),
-                      )
-                    ],
-                  ),
+                  DoubleText(
+                    bn: "Upcoming Flights",
+                    sn: "View all",
+                    press: () {
+                      // Navigate to the UpcomingFlights screen
+                      Get.to(UpcomingFlights());
+                    },
+                  )
                 ],
               ),
             ),
@@ -175,25 +164,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Gap(15),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Hotels",
-                    style: Styles.headLineStyle2,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(HotelViewAll());
-                    },
-                    splashColor: Colors.transparent,
-                    child: Text(
-                      "View all",
-                      style:
-                          Styles.textStyle.copyWith(color: Styles.primaryColor),
-                    ),
-                  )
-                ],
+              child: DoubleText(
+                bn: "Hotels",
+                sn: "View all",
+                press: () {
+                  // Navigate to the UpcomingFlights screen
+                  Get.to(HotelViewAll());
+                },
               ),
             ),
             Gap(15),
@@ -235,41 +212,82 @@ class HotelsWidget extends StatelessWidget {
   }
 }
 
+// class TicketsWidget extends StatelessWidget {
+//   final Axis dir;
+//   final List<Map<String, dynamic>>
+//       ticket; // Add a new parameter for the filtered list
+//   final bool? isCheck;
+//
+//   TicketsWidget(
+//       {Key? key, required this.dir, required this.ticket, this.isCheck})
+//       : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       scrollDirection: dir,
+//       padding: isCheck == null
+//           ? EdgeInsets.only(
+//               left: AppLayout.getHeight(20),
+//             )
+//           : EdgeInsets.symmetric(horizontal: AppLayout.getHeight(20)),
+//       child: isCheck == null
+//           ? Row(
+//               children: ticket
+//                   .map((e) => TicketView(
+//                         ticket: e,
+//                         color: Colors.white,
+//                       ))
+//                   .toList())
+//           : Column(
+//               children: ticket
+//                   .map((e) => TicketView(
+//                         ticket: e,
+//                         color: Colors.white,
+//                         istickets: true,
+//                       ))
+//                   .toList()),
+//     );
+//   }
+// }
 class TicketsWidget extends StatelessWidget {
   final Axis dir;
   final List<Map<String, dynamic>>
       ticket; // Add a new parameter for the filtered list
   final bool? isCheck;
 
-  TicketsWidget(
-      {Key? key, required this.dir, required this.ticket, this.isCheck})
-      : super(key: key);
+  TicketsWidget({
+    Key? key,
+    required this.dir,
+    required this.ticket,
+    this.isCheck,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: dir,
-      padding: isCheck == null
-          ? EdgeInsets.only(
-              left: AppLayout.getHeight(20),
-            )
-          : EdgeInsets.symmetric(horizontal: AppLayout.getHeight(20)),
-      child: isCheck == null
-          ? Row(
-              children: ticket
-                  .map((e) => TicketView(
-                        ticket: e,
-                        color: Colors.white,
-                      ))
-                  .toList())
-          : Column(
+    return isCheck == null
+        ? SingleChildScrollView(
+            scrollDirection: dir,
+            padding: EdgeInsets.only(left: AppLayout.getHeight(20)),
+            child: Row(
+                children: ticket
+                    .map((e) => TicketView(
+                          ticket: e,
+                          color: Colors.white,
+                        ))
+                    .toList()))
+        : SingleChildScrollView(
+            scrollDirection: dir,
+            padding: EdgeInsets.symmetric(horizontal: AppLayout.getHeight(20)),
+            child: Column(
               children: ticket
                   .map((e) => TicketView(
                         ticket: e,
                         color: Colors.white,
                         istickets: true,
                       ))
-                  .toList()),
-    );
+                  .toList(),
+            ),
+          );
   }
 }
